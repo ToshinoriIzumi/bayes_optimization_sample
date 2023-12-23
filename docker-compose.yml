@@ -1,0 +1,47 @@
+version: '3'
+services:
+  frontend:
+    build: 
+      context: .
+      dockerfile: ./docker/frontend/Dockerfile
+    volumes:
+      - ./code/frontend:/opt/app
+      - node_modules:/opt/app/node_modules
+    command: npm start /opt/app
+    ports:
+      - "3000:3000"
+    networks:
+      - material-predict-network
+  backend:
+    build: 
+      context: .
+      dockerfile: ./docker/backend/Dockerfile
+    volumes: 
+      - ./code/backend:/opt/app
+    command: poetry run uvicorn src.app:app --host 0.0.0.0 --reload
+    ports:
+      - "8000:8000"
+    networks:
+      - material-predict-network
+  # db:
+  #   image: postgres:9.6
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - ./db/data:/var/lib/postgresql/data
+  #   environment:
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_PASSWORD: postgres
+  #     POSTGRES_DB: task_app
+  #   networks:
+  #     - task-app-network
+networks:
+  material-predict-network:
+    driver: bridge
+volumes:
+  node_modules:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${PWD}/code/frontend/node_modules
+      o: bind
