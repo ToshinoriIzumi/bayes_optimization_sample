@@ -1,8 +1,9 @@
 import { ChangeEvent, useState, FC } from 'react';
 import { usePredictMaterial } from '../hooks/usePredictMaterial';
+import type { Material } from '../types/material';
 
 const PredictPage: FC = () => {
-    const { predictMaterial, error, material  } = usePredictMaterial();
+    const { predictMaterial, error, materials  } = usePredictMaterial();
     const [water, setWater] = useState<number>(0);
     const [carbonatedWater, setCarbonateWater] = useState<number>(0);
     const [calpisNomal, setCalpisNomal] = useState<number>(0);
@@ -87,21 +88,19 @@ const PredictPage: FC = () => {
                     次のカルピスを作る材料を予測する
                 </button>
             </div>
-            {
-                error && <div className='text-red-500'>エラーが発生しました</div>
-            }
-            {
-                material && (
+            { materials == null ? (
+                <div>予測する材料を入力してください</div>
+            ):(
+                materials.map((material: Material) => (
                     <div>
                         <div>次に試してみる量はこちらです！</div>
                         <div>水の量: {material.water}</div>
                         <div>炭酸水の量: {material.carbonated_water}</div>
                         <div>カルピスの量: {material.calpis_nomal}</div>
                         <div>美味しさ: {material.deliciousness}</div>
-                    </div>
-                )
-            }
-
+                    </div>        
+                ))
+            )}
         </>
     )
 }
