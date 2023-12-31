@@ -1,6 +1,5 @@
 from datetime import datetime
 from typing import Optional
-from sqlalchemy import null
 
 from sqlmodel import Field, SQLModel
 

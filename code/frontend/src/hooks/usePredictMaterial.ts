@@ -9,7 +9,6 @@ export const usePredictMaterial = () => {
     const predictMaterial = useCallback(async (material: Material) => {
         await axios.post<Material[]>(URL + '/predict', material)
         .then((res) => {
-            console.log(res);
             setMaterials(res.data);
         })
         .catch((err) => {setError(err)});

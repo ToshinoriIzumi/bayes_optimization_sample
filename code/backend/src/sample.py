@@ -1,8 +1,29 @@
+from sqlmodel import SQLModel
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.gaussian_process import GaussianProcessRegressor
 from sklearn.gaussian_process.kernels import RBF, WhiteKernel, ConstantKernel
+
+
+class Sample(SQLModel):
+    water: float
+    carbonated_water: float
+    calpis_nomal: float
+    deliciousness: float
+
+
+data = [
+    Sample(water=5.0, carbonated_water=65.0,
+           calpis_nomal=30.0, deliciousness=100.0),
+    Sample(water=10.0, carbonated_water=60.0,
+           calpis_nomal=30.0, deliciousness=75.0),
+    Sample(water=15.0, carbonated_water=55.0,
+           calpis_nomal=30.0, deliciousness=75.0),
+]
+
+df = pd.DataFrame([s.model_dump() for s in data])
+print(df)
 
 example_data = {
     "water": [5.0, 10.0, 15.0, 30.0, 5.0],

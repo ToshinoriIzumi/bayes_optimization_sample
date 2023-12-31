@@ -18,3 +18,9 @@ class MaterialCrud:
         db.commit()
         db.refresh(db_material)
         return cls.search_all(db)
+
+    @classmethod
+    def delete_all(cls, db: Session) -> None:
+        for data in cls.search_all(db):
+            db.delete(data)
+        db.commit()
