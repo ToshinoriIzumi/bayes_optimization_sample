@@ -21,6 +21,9 @@ class MaterialPredict:
 
     @classmethod
     def load_combinations(cls) -> None:
+        if cls._combinations is not None:
+            return
+        print('test', flush=True)
         app_root_path = os.path.dirname(
             os.path.dirname(
                 os.path.abspath(__file__)
@@ -34,7 +37,7 @@ class MaterialPredict:
 
     @classmethod
     def init_combinations(cls):
-        cls._combinations = pd.DataFrame({})
+        cls._combinations = None
 
     @classmethod
     def predict(cls, db: Session) -> MaterialRead:
@@ -81,6 +84,7 @@ class MaterialPredict:
             y_mean + ((np.log(experiment_count) / experiment_count) ** 0.5 * y_var))
         next_sample = cls._combinations.iloc[acq_index, :]
         cls._combinations.drop(acq_index, inplace=True)
+        cls._combinations.reset_index(drop=True, inplace=True)
 
         return MaterialRead(
             id=0,
