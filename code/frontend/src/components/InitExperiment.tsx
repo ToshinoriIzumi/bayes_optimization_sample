@@ -1,10 +1,10 @@
 import React from 'react'
-import { useEffect } from 'react';
+import { useEffect, FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useDeleteExperiment } from '../hooks/useDeleteExperiment';
 
-const InitExperiment = () => {
+const InitExperiment: FC = () => {
     const navigate = useNavigate();
     const { deleteExperiment, error, loading } = useDeleteExperiment();
     
