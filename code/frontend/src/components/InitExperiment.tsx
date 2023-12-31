@@ -8,7 +8,7 @@ const InitExperiment = () => {
     const navigate = useNavigate();
     const { deleteExperiment, error, loading } = useDeleteExperiment();
     
-    const RedirectHome = () => {
+    const redirectHome = () => {
         navigate('/');
     }
 
@@ -19,7 +19,7 @@ const InitExperiment = () => {
     return (
         <>
             <div>実験を初期化しました。</div>
-            <button onClick={RedirectHome}>Homeへ</button>
+            <button onClick={redirectHome}>Homeへ</button>
         </>
     )
 }
