@@ -32,76 +32,76 @@ const PredictPage: FC = () => {
     }
     
     return (
-        <>
-            <div>試したカルピスの材料</div>
-            <div>
-                <div>
+        <div className="max-w-xl mx-auto p-4 bg-white shadow-md rounded-md">
+            <div className="text-lg font-bold text-center mb-6">試したカルピスの材料</div>
+            <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2">
                     水の量
-                </div>
+                </label>
                 <div>
                     <input
                         type='number'
                         className='w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4'
-                        value={String(water)}
+                        value={water}
                         onChange={handleWaterChange}
                     />
                 </div>
             </div>
-            <div>
-                <div>炭酸水の量</div>
+            <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2">炭酸水の量</label>
                 <div>
                     <input
                         type='number'
                         className='w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4'
-                        value={String(carbonatedWater)}
+                        value={carbonatedWater}
                         onChange={handleCarbonateWater}
                     />
                 </div>
             </div>
-            <div>
-                <div>カルピスの量</div>
+            <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2">カルピスの量</label>
                 <div>
                     <input
                         type='number'
                         className='w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4'
-                        value={String(calpisNomal)}
+                        value={calpisNomal}
                         onChange={handleCalpisNomal}
                     />
                 </div>
             </div>
-            <div>
-                <div>美味しさ</div>
+            <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2">美味しさ</label>
                 <div>
                     <input
                         type='number'
                         className='w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4'
-                        value={String(deliciousness)}
+                        value={deliciousness}
                         onChange={handleDeliciousness}
                     />
                 </div>  
             </div>        
-            <div>
+            <div className="mb-4">
                 <button 
-                    className='w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-700'
+                    className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-700 transition duration-300"
                     onClick={() => predictMaterial(getMaterial())}
                 >
                     次のカルピスを作る材料を予測する
                 </button>
             </div>
             { materials == null ? (
-                <div>予測する材料を入力してください</div>
+                <div className="text-red-500">予測する材料を入力してください</div>
             ):(
                 materials.map((material: Material) => (
-                    <div>
-                        <div>次に試してみる量はこちらです！</div>
-                        <div>水の量: {material.water}</div>
-                        <div>炭酸水の量: {material.carbonated_water}</div>
-                        <div>カルピスの量: {material.calpis_nomal}</div>
-                        <div>美味しさ: {material.deliciousness}</div>
+                    <div className="p-4 my-2 border border-gray-300 rounded-md">
+                        <div className="font-bold">次に試してみる量はこちらです！</div>
+                        <div className="font-bold">水の量: {material.water}</div>
+                        <div className="font-bold">炭酸水の量: {material.carbonated_water}</div>
+                        <div  className="font-bold">カルピスの量: {material.calpis_nomal}</div>
+                        <div  className="font-bold">美味しさ: {material.deliciousness}</div>
                     </div>        
                 ))
             )}
-        </>
+        </div>
     )
 }
 
