@@ -1,9 +1,9 @@
 import { ChangeEvent, useState, FC } from 'react';
 import { usePredictMaterial } from '../hooks/usePredictMaterial';
-import type { Material } from '../types/material';
+import type { ExpremintalMaterial } from '../types/material';
 
 const PredictPage: FC = () => {
-    const { predictMaterial, error, materials  } = usePredictMaterial();
+    const { predictMaterial, error, materials, predictedMaterial  } = usePredictMaterial();
     const [water, setWater] = useState<number>(0);
     const [carbonatedWater, setCarbonateWater] = useState<number>(0);
     const [calpisNomal, setCalpisNomal] = useState<number>(0);
@@ -88,18 +88,39 @@ const PredictPage: FC = () => {
                     次のカルピスを作る材料を予測する
                 </button>
             </div>
+            <div className="p-4 my-2 border border-gray-300 rounded-md">
+                <div>今回実験する配合は以下です。</div>
+                <div className="text-lg font-bold text-blue-500">水の量: {predictedMaterial?.water}</div>
+                <div className="text-lg font-bold text-blue-500">炭酸水の量: {predictedMaterial?.carbonated_water}</div>
+                <div className="text-lg font-bold text-blue-500">カルピスの量: {predictedMaterial?.calpis_nomal}</div>
+            </div>
+
             { materials == null ? (
                 <div className="text-red-500">予測する材料を入力してください</div>
             ):(
-                materials.map((material: Material) => (
-                    <div className="p-4 my-2 border border-gray-300 rounded-md">
-                        <div className="font-bold">次に試してみる量はこちらです！</div>
-                        <div className="font-bold">水の量: {material.water}</div>
-                        <div className="font-bold">炭酸水の量: {material.carbonated_water}</div>
-                        <div  className="font-bold">カルピスの量: {material.calpis_nomal}</div>
-                        <div  className="font-bold">美味しさ: {material.deliciousness}</div>
-                    </div>        
-                ))
+                <div className="p-4 my-2 border border-gray-300 rounded-md">
+                    <p>過去の実験結果</p>
+                    <table className="min-w-full">
+                        <thead>
+                            <tr>
+                                <th className="text-left">水の量</th>
+                                <th className="text-left">炭酸水の量</th>
+                                <th className="text-left">カルピスの量</th>
+                                <th className="text-left">美味しさ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            { materials.map((material: ExpremintalMaterial) => (
+                                <tr id={String(material.id)}>
+                                    <td className="border px-4 py-2">{material.water}</td>
+                                    <td className="border px-4 py-2">{material.carbonated_water}</td>
+                                    <td className="border px-4 py-2">{material.calpis_nomal}</td>
+                                    <td className="border px-4 py-2">{material.deliciousness}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             )}
         </div>
     )

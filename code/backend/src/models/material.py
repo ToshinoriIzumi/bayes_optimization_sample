@@ -26,3 +26,12 @@ class MaterialRead(MaterialBase):
     id: int
     created_at: datetime
     updated_at: datetime
+
+
+class MaterialResult(MaterialBase):
+    pass
+
+
+class ResponseMaterial(SQLModel):
+    experiments: list[MaterialRead]
+    predicted: MaterialResult

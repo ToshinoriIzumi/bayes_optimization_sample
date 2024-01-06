@@ -15,7 +15,7 @@ COPY ./code/backend/pyproject.toml ./
 RUN pip install poetry && \
     poetry config virtualenvs.in-project true && \
     poetry config virtualenvs.create false && \
-    if [ -f pyproject.toml ]; then poetry install --no-root; fi
+    if [ -f pyproject.toml ]; then poetry update package && poetry install --no-root; fi
 
 USER app_user
 ENV PYTHONPATH=/opt/app
