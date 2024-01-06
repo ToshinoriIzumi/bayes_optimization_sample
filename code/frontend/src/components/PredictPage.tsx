@@ -36,7 +36,7 @@ const PredictPage: FC = () => {
             <div className="text-lg font-bold text-center mb-6">試したカルピスの材料</div>
             <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">
-                    水の量
+                    水の量(ml)
                 </label>
                 <div>
                     <input
@@ -48,7 +48,7 @@ const PredictPage: FC = () => {
                 </div>
             </div>
             <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2">炭酸水の量</label>
+                <label className="block text-gray-700 text-sm font-bold mb-2">炭酸水の量(ml)</label>
                 <div>
                     <input
                         type='number'
@@ -59,7 +59,7 @@ const PredictPage: FC = () => {
                 </div>
             </div>
             <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2">カルピスの量</label>
+                <label className="block text-gray-700 text-sm font-bold mb-2">カルピスの量(ml)</label>
                 <div>
                     <input
                         type='number'
@@ -90,9 +90,9 @@ const PredictPage: FC = () => {
             </div>
             <div className="p-4 my-2 border border-gray-300 rounded-md">
                 <div>今回実験する配合は以下です。</div>
-                <div className="text-lg font-bold text-blue-500">水の量: {predictedMaterial?.water}</div>
-                <div className="text-lg font-bold text-blue-500">炭酸水の量: {predictedMaterial?.carbonated_water}</div>
-                <div className="text-lg font-bold text-blue-500">カルピスの量: {predictedMaterial?.calpis_nomal}</div>
+                <div className="text-lg font-bold text-blue-500">水の量: {predictedMaterial?.water} ml</div>
+                <div className="text-lg font-bold text-blue-500">炭酸水の量: {predictedMaterial?.carbonated_water} ml</div>
+                <div className="text-lg font-bold text-blue-500">カルピスの量: {predictedMaterial?.calpis_nomal} ml</div>
             </div>
 
             { materials == null ? (
@@ -103,10 +103,10 @@ const PredictPage: FC = () => {
                     <table className="min-w-full">
                         <thead>
                             <tr>
-                                <th className="text-left">水の量</th>
-                                <th className="text-left">炭酸水の量</th>
-                                <th className="text-left">カルピスの量</th>
-                                <th className="text-left">美味しさ</th>
+                                <th className="text-left">水の量(ml)</th>
+                                <th className="text-left">炭酸水の量(ml)</th>
+                                <th className="text-left">カルピスの量(ml)</th>
+                                <th className="text-left">美味しさ(ml)</th>
                             </tr>
                         </thead>
                         <tbody>
